@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>resalehome.com — South India's Trusted Resale Property Platform</title>
+  <meta name="description" content="Independent certified valuation, legal due diligence, and home loan facilitation for residential resale properties in South India. TNRERA Registered." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<!-- =====================================================
+     SECTION 1 — NAVIGATION
+     ===================================================== -->
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <div class="nav-inner">
+      <!-- Logo -->
+      <a href="#hero" class="nav-logo" aria-label="resalehome.com — home">
+        <span class="nav-logo-word">resalehome</span><span class="nav-logo-tld">.com</span>
+      </a>
+
+      <!-- Desktop links -->
+      <ul class="nav-links" role="list">
+        <li><a href="#dilemma">For Sellers</a></li>
+        <li><a href="#services">For Buyers</a></li>
+        <li><a href="#valuation">How it Works</a></li>
+        <li><a href="#footer">Contact</a></li>
+      </ul>
+
+      <!-- Desktop CTA -->
+      <button class="btn btn-primary nav-desktop-cta" data-modal="register">
+        List my property
+      </button>
+
+      <!-- Hamburger -->
+      <button
+        id="nav-hamburger"
+        class="nav-hamburger"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="nav-mobile"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <nav id="nav-mobile" class="nav-mobile" aria-label="Mobile navigation">
+      <a href="#dilemma">For Sellers</a>
+      <a href="#services">For Buyers</a>
+      <a href="#valuation">How it Works</a>
+      <a href="#footer">Contact</a>
+      <button class="btn btn-primary" data-modal="register">List my property</button>
+    </nav>
+  </div>
+</nav>
+
+<main id="main-content">
+
+<!-- =====================================================
+     SECTION 2 — HERO
+     ===================================================== -->
+<section id="hero" aria-labelledby="hero-heading">
+  <div class="container">
+    <div class="hero-grid">
+
+      <!-- Left: Text -->
+      <div class="hero-text">
+        <span class="hero-eyebrow">South India's trusted resale platform</span>
+
+        <h1 class="hero-title" id="hero-heading">
+          <span class="word-group">Is this the right&nbsp;</span><span class="word-group">price —</span><br>
+          <span class="word-group">and the right&nbsp;</span><span class="word-group">time?</span>
+        </h1>
+
+        <p class="hero-subheading">
+          Every home carries not just square footage, but decades of
+          family memory. We help you answer the hardest question
+          in property: the dilemma of value.
+        </p>
+
+        <div class="hero-cta-row">
+          <button class="btn btn-primary" data-modal="register">
+            List my property
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <a href="#valuation" class="btn btn-secondary">How it works</a>
+        </div>
+
+        <div class="hero-trust">
+          <span class="hero-trust-check" aria-hidden="true">✓</span>
+          <span>Registered under TNRERA</span>
+        </div>
+      </div>
+
+      <!-- Right: Illustration placeholder -->
+      <div class="hero-illustration" aria-hidden="true">
+        <svg viewBox="0 0 420 380" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Abstract house facade illustration">
+          <!-- Background wash -->
+          <rect width="420" height="380" rx="24" fill="#F7F4F0"/>
+
+          <!-- Large backdrop rectangle -->
+          <rect x="60" y="60" width="220" height="260" rx="12" fill="#EDE8E0"/>
+
+          <!-- Copper accent block (facade) -->
+          <rect x="90" y="100" width="160" height="180" rx="8" fill="#B87333" opacity="0.18"/>
+
+          <!-- Main house body -->
+          <rect x="110" y="130" width="140" height="150" rx="6" fill="#FFFFFF" stroke="#B87333" stroke-width="1.5"/>
+
+          <!-- Roof triangle -->
+          <polygon points="95,130 180,60 265,130" fill="#B87333" opacity="0.75"/>
+
+          <!-- Door -->
+          <rect x="158" y="218" width="44" height="62" rx="4" fill="#B87333" opacity="0.35"/>
+          <rect x="162" y="222" width="36" height="54" rx="3" fill="#B87333" opacity="0.55"/>
+          <!-- Door knob -->
+          <circle cx="191" cy="252" r="3" fill="#B87333"/>
+
+          <!-- Windows -->
+          <rect x="122" y="152" width="40" height="36" rx="4" fill="#E6F1FB" stroke="#B87333" stroke-width="1" opacity="0.9"/>
+          <rect x="198" y="152" width="40" height="36" rx="4" fill="#E6F1FB" stroke="#B87333" stroke-width="1" opacity="0.9"/>
+          <!-- Window cross bars -->
+          <line x1="142" y1="152" x2="142" y2="188" stroke="#B87333" stroke-width="0.75" opacity="0.5"/>
+          <line x1="122" y1="170" x2="162" y2="170" stroke="#B87333" stroke-width="0.75" opacity="0.5"/>
+          <line x1="218" y1="152" x2="218" y2="188" stroke="#B87333" stroke-width="0.75" opacity="0.5"/>
+          <line x1="198" y1="170" x2="238" y2="170" stroke="#B87333" stroke-width="0.75" opacity="0.5"/>
+
+          <!-- Teal accent overlapping rectangle -->
+          <rect x="240" y="180" width="120" height="140" rx="10" fill="#1D9E75" opacity="0.12"/>
+          <rect x="250" y="195" width="96" height="110" rx="6" fill="#1D9E75" opacity="0.1"/>
+
+          <!-- Floating badge: value -->
+          <rect x="262" y="108" width="116" height="48" rx="10" fill="#FFFFFF" stroke="#B87333" stroke-width="1"/>
+          <text x="278" y="128" font-family="'DM Sans', sans-serif" font-size="10" fill="#6B6B67">Certified valuation</text>
+          <text x="278" y="146" font-family="'Cormorant Garamond', serif" font-size="14" font-weight="600" fill="#B87333">₹ Fair market value</text>
+
+          <!-- Floating badge: TNRERA -->
+          <rect x="28" y="200" width="96" height="40" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1"/>
+          <text x="44" y="215" font-family="'DM Sans', sans-serif" font-size="9" fill="#1D9E75" font-weight="500">✓ TNRERA</text>
+          <text x="44" y="230" font-family="'DM Sans', sans-serif" font-size="9" fill="#6B6B67">Registered</text>
+
+          <!-- Ground line -->
+          <rect x="80" y="280" width="200" height="6" rx="3" fill="#B87333" opacity="0.15"/>
+
+          <!-- Ground shadow -->
+          <ellipse cx="180" cy="284" rx="90" ry="8" fill="#B87333" opacity="0.07"/>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     SECTION 3 — THE SELLER'S DILEMMA
+     ===================================================== -->
+<section id="dilemma" class="section-pad" aria-labelledby="dilemma-heading">
+  <div class="container">
+    <article class="dilemma-card">
+      <div class="dilemma-header">
+        <span class="section-label anim-label">The Seller's Dilemma</span>
+        <h2 id="dilemma-heading" class="anim-heading">Three questions before you decide</h2>
+      </div>
+
+      <div class="anim-group">
+        <div class="dilemma-grid">
+          <!-- Card 01 -->
+          <div class="dilemma-item copper anim-card">
+            <span class="dilemma-num">01</span>
+            <h3>Right price?</h3>
+            <p>Am I exiting at fair market value — or leaving money on the table?</p>
+          </div>
+
+          <!-- Card 02 -->
+          <div class="dilemma-item teal anim-card">
+            <span class="dilemma-num">02</span>
+            <h3>Right time?</h3>
+            <p>Is the market in my favour right now, or should I wait?</p>
+          </div>
+        </div>
+
+        <!-- Question 03 — full width prose -->
+        <div class="dilemma-prose anim-card">
+          <p>
+            <strong>Over-leveraged on your portfolio?</strong>
+            The third question — whether you can sustain holding if your
+            portfolio is over-leveraged — often drives the decision more than price
+            or timing. We help you map all three before you commit to exit.
+          </p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- =====================================================
+     SECTION 4 — VALUATION FACTORS
+     ===================================================== -->
+<section id="valuation" class="section-pad" aria-labelledby="valuation-heading">
+  <div class="container">
+    <article class="valuation-card">
+      <div class="valuation-header">
+        <span class="section-label anim-label">What Shapes Your Exit Price</span>
+        <h2 id="valuation-heading" class="anim-heading">Key factors in your appraisal</h2>
+      </div>
+
+      <div class="pills-grid anim-group">
+
+        <!-- Pill 1 -->
+        <div class="pill anim-card">
+          <div class="pill-icon-wrap" aria-hidden="true">
+            <!-- House icon -->
+            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9.5L10 3l7 6.5"/>
+              <path d="M5 8v8h10V8"/>
+              <path d="M8 16v-4h4v4"/>
+            </svg>
+          </div>
+          <h3>Property age</h3>
+          <p>Structural life, depreciation curve, deferred maintenance load</p>
+        </div>
+
+        <!-- Pill 2 -->
+        <div class="pill anim-card">
+          <div class="pill-icon-wrap" aria-hidden="true">
+            <!-- Chart-up icon -->
+            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3,14 8,9 12,12 17,5"/>
+              <polyline points="13,5 17,5 17,9"/>
+            </svg>
+          </div>
+          <h3>Return on investment</h3>
+          <p>Capital appreciation relative to original acquisition cost and holding period costs</p>
+        </div>
+
+        <!-- Pill 3 -->
+        <div class="pill anim-card">
+          <div class="pill-icon-wrap" aria-hidden="true">
+            <!-- Scales / balance icon -->
+            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="10" y1="3" x2="10" y2="17"/>
+              <line x1="5" y1="17" x2="15" y2="17"/>
+              <line x1="3" y1="7" x2="17" y2="7"/>
+              <path d="M3 7 C3 7 2 10 5 10 C8 10 7 7 7 7"/>
+              <path d="M13 7 C13 7 12 10 15 10 C18 10 17 7 17 7"/>
+            </svg>
+          </div>
+          <h3>Demand vs. supply</h3>
+          <p>Micro-market inventory levels and current absorption rates</p>
+        </div>
+
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- =====================================================
+     SECTION 5 — OUR THREE SERVICES
+     ===================================================== -->
+<section id="services" class="section-pad" aria-labelledby="services-heading">
+  <div class="container">
+    <article class="services-card">
+      <div class="services-header">
+        <span class="section-label anim-label">What We Do for You</span>
+        <h2 id="services-heading" class="anim-heading">Three pillars of our service</h2>
+      </div>
+
+      <div class="service-rows anim-group">
+
+        <!-- Row 1 — Valuation -->
+        <div class="service-row anim-card">
+          <div class="service-icon-wrap copper" aria-hidden="true">
+            <!-- Building / institution icon -->
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="16" height="11" rx="1"/>
+              <path d="M6 18V11h8v7"/>
+              <path d="M2 7l8-5 8 5"/>
+              <line x1="10" y1="2" x2="10" y2="7"/>
+            </svg>
+          </div>
+          <div class="service-body">
+            <h3>Independent property valuation</h3>
+            <p>
+              We engage certified chartered engineers empanelled with leading
+              banks and institutions. They appraise your property on its
+              intrinsic attributes, current market forces, and the local
+              demand-supply position — not just comparable sales.
+            </p>
+          </div>
+          <span class="service-badge copper">Third-party certified</span>
+        </div>
+
+        <!-- Row 2 — Legal -->
+        <div class="service-row anim-card">
+          <div class="service-icon-wrap teal" aria-hidden="true">
+            <!-- Scales / gavel icon -->
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 16h12"/>
+              <path d="M10 5v11"/>
+              <path d="M6 5 C6 5 5 8 8 8 C11 8 10 5 10 5"/>
+              <path d="M10 5 C10 5 9 8 12 8 C15 8 14 5 14 5"/>
+              <line x1="4" y1="5" x2="16" y2="5"/>
+            </svg>
+          </div>
+          <div class="service-body">
+            <h3>Legal due diligence &amp; title verification</h3>
+            <p>
+              Our empanelled lawyers verify the full encumbrance history,
+              title chain, and regulatory approvals — removing every
+              ambiguity from the transaction for both buyer and seller.
+            </p>
+          </div>
+          <span class="service-badge teal">Empanelled lawyers</span>
+        </div>
+
+        <!-- Row 3 — Home Loan -->
+        <div class="service-row anim-card">
+          <div class="service-icon-wrap blue" aria-hidden="true">
+            <!-- Bank / building columns icon -->
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="2" y1="18" x2="18" y2="18"/>
+              <line x1="2" y1="8" x2="18" y2="8"/>
+              <path d="M10 2l8 6H2l8-6z"/>
+              <line x1="5" y1="8" x2="5" y2="18"/>
+              <line x1="10" y1="8" x2="10" y2="18"/>
+              <line x1="15" y1="8" x2="15" y2="18"/>
+            </svg>
+          </div>
+          <div class="service-body">
+            <h3>Home loan facilitation</h3>
+            <p>
+              We are experts in retail home loans. Through our network of
+              leading banks and financial institutions, we bridge the final
+              gap between a buyer's aspiration and their purchasing power.
+            </p>
+          </div>
+          <span class="service-badge blue">Leading bank network</span>
+        </div>
+
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- =====================================================
+     SECTION 6 — TRUST / EMOTIONAL ANCHOR
+     ===================================================== -->
+<section id="trust" class="section-pad" aria-labelledby="trust-heading">
+  <div class="container">
+    <div class="trust-inner">
+
+      <blockquote class="trust-quote anim-card">
+        "A house full of family memories deserves a caring new custodian."
+      </blockquote>
+
+      <div class="trust-body">
+        <p class="anim-card">
+          As householders and property owners ourselves, we recognise that real
+          estate represents not only a significant investment of hard-earned
+          resources, but also a home full of family memories. We are committed
+          to providing the best deal for our customers — and to finding a caring
+          new custodian for every cherished home.
+        </p>
+        <p class="anim-card">
+          As a matchmaker, we are both responsible and transparent in connecting
+          the right buyer to the right seller.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     SECTION 7 — CTA BANNER
+     ===================================================== -->
+<section id="cta-banner" aria-labelledby="cta-heading">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-text">
+        <h2 id="cta-heading">Ready to take the first step?</h2>
+        <p>Register your property today. No obligation, no pressure.</p>
+      </div>
+      <div class="cta-buttons">
+        <button class="btn btn-white" data-modal="register">
+          Register my property
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <a href="#footer" class="btn btn-white-outline">Contact us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- =====================================================
+     SECTION 8 — FOOTER
+     ===================================================== -->
+<footer id="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Col 1: Brand -->
+      <div class="footer-col">
+        <div class="footer-logo">
+          <span class="footer-logo-word">resalehome</span><span class="footer-logo-tld">.com</span>
+        </div>
+        <p class="footer-tagline">South India's trusted resale property platform.</p>
+        <p class="footer-reg">TNRERA Registered &nbsp;|&nbsp; &copy; 2025 resalehome.com</p>
+      </div>
+
+      <!-- Col 2: Quick links -->
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul role="list">
+          <li><a href="#dilemma">For Sellers</a></li>
+          <li><a href="#services">For Buyers</a></li>
+          <li><a href="#valuation">How it Works</a></li>
+          <li><a href="#trust">About Us</a></li>
+          <li><a href="#footer">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Contact -->
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="footer-contact">
+          <p>Chennai, Tamil Nadu</p>
+          <a href="mailto:info@resalehome.com">info@resalehome.com</a>
+          <a href="tel:+91XXXXXXXXXX">+91 XXXXX XXXXX</a>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="footer-bottom">
+      resalehome.com is registered under the Tamil Nadu Real Estate Regulatory Authority (TNRERA).
+      All transactions facilitated through our platform are subject to applicable laws.
+    </p>
+  </div>
+</footer>
+
+<!-- =====================================================
+     REGISTRATION MODAL
+     ===================================================== -->
+<div
+  id="modal-overlay"
+  class="modal-overlay"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modal-heading"
+>
+  <div id="modal-card" class="modal-card">
+
+    <button id="modal-close" class="modal-close" aria-label="Close registration form">&times;</button>
+
+    <!-- Header -->
+    <div class="modal-header">
+      <h2 id="modal-heading">Register your property</h2>
+    </div>
+    <p class="modal-sub">One of our advisors will contact you within 24 hours.</p>
+
+    <!-- Form -->
+    <form id="reg-form" class="form-grid" novalidate>
+
+      <!-- Full name -->
+      <div class="form-field">
+        <label for="field-name">Full name <span class="req" aria-hidden="true">*</span></label>
+        <input id="field-name" type="text" name="fullName" placeholder="e.g. Ramesh Kumar" required autocomplete="name" />
+      </div>
+
+      <!-- Mobile + Email -->
+      <div class="form-row two-col">
+        <div class="form-field">
+          <label for="field-mobile">Mobile number <span class="req" aria-hidden="true">*</span></label>
+          <input id="field-mobile" type="tel" name="mobile" placeholder="+91 98765 43210" required autocomplete="tel" />
+        </div>
+        <div class="form-field">
+          <label for="field-email">Email address <span class="req" aria-hidden="true">*</span></label>
+          <input id="field-email" type="email" name="email" placeholder="you@example.com" required autocomplete="email" />
+        </div>
+      </div>
+
+      <!-- Property location -->
+      <div class="form-field">
+        <label for="field-location">Property location <span class="req" aria-hidden="true">*</span></label>
+        <input id="field-location" type="text" name="location" placeholder="e.g. Anna Nagar, Chennai" required />
+      </div>
+
+      <!-- Property type + Area -->
+      <div class="form-row two-col">
+        <div class="form-field">
+          <label for="field-type">Property type <span class="req" aria-hidden="true">*</span></label>
+          <select id="field-type" name="propertyType" required>
+            <option value="" disabled selected>Select type</option>
+            <option value="apartment">Apartment</option>
+            <option value="independent-house">Independent House</option>
+            <option value="villa">Villa</option>
+            <option value="plot">Plot</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="field-area">Approximate area <span class="req" aria-hidden="true">*</span></label>
+          <div class="input-wrap has-suffix">
+            <input id="field-area" type="number" name="area" placeholder="1200" min="1" required />
+            <span class="suffix">sq ft</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Asking price -->
+      <div class="form-field">
+        <label for="field-price">Approximate asking price <span class="req" aria-hidden="true">*</span></label>
+        <div class="input-wrap has-prefix has-suffix">
+          <span class="prefix">&#8377;</span>
+          <input id="field-price" type="number" name="price" placeholder="75" min="1" required />
+          <span class="suffix">Lakhs</span>
+        </div>
+      </div>
+
+      <!-- Notes -->
+      <div class="form-field">
+        <label for="field-notes">Additional notes</label>
+        <textarea id="field-notes" name="notes" rows="3" placeholder="Any details you'd like to share about the property…"></textarea>
+      </div>
+
+      <button type="submit" class="form-submit-btn">Submit enquiry</button>
+
+      <p class="form-privacy">
+        By submitting you agree to our privacy policy. Your details will not be shared with third parties.
+      </p>
+
+    </form>
+
+    <!-- Success state (hidden until submit) -->
+    <div id="modal-success" class="modal-success" role="status" aria-live="polite">
+      <div class="success-icon" aria-hidden="true">&#10003;</div>
+      <p class="success-title">Thank you — we'll be in touch within 24 hours.</p>
+      <p class="success-sub">Your enquiry has been received and an advisor will call you shortly.</p>
+      <span id="success-ref" class="success-ref"></span>
+    </div>
+
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
