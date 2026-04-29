@@ -1,0 +1,28 @@
+.shell { display: flex; flex-direction: column; min-height: 100vh; }
+
+.body {
+  display: flex;
+  flex: 1;
+}
+
+.main {
+  flex: 1;
+  padding: 32px 28px;
+  max-width: calc(var(--max-content) + 56px);
+  overflow-x: hidden;
+}
+
+.overlay {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .main { padding: 20px 16px; }
+  .overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: 30;
+  }
+}

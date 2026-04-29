@@ -141,3 +141,10 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Firebase service account key (never commit)
+app/service-account-key.json
+service-account-key.json
+
+# App local env
+app/.env.local
