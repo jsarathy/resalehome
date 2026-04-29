@@ -2,12 +2,16 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './hooks/useAuth';
 import RequireAuth from './components/RequireAuth';
 import AppLayout from './components/AppLayout';
+import PublicLayout from './components/PublicLayout';
 import LoadingSpinner from './components/LoadingSpinner';
 
-import Login        from './pages/Login';
-import Signup       from './pages/Signup';
-import NotFound     from './pages/NotFound';
-import Unauthorized from './pages/Unauthorized';
+import Landing       from './pages/Landing';
+import Listings      from './pages/Listings';
+import ListingDetail from './pages/ListingDetail';
+import Login         from './pages/Login';
+import Signup        from './pages/Signup';
+import NotFound      from './pages/NotFound';
+import Unauthorized  from './pages/Unauthorized';
 
 // Seller
 import SellerDashboard      from './pages/seller/Dashboard';
@@ -37,27 +41,34 @@ import AdminUsers     from './pages/admin/Users';
 function RoleRedirect() {
   const { user, userProfile, loading } = useAuth();
   if (loading) return <LoadingSpinner fullPage />;
-  if (!user)   return <Navigate to="/login" replace />;
+  if (!user)   return <Navigate to="/" replace />;
   const role = userProfile?.role;
   if (role === 'seller') return <Navigate to="/seller/dashboard" replace />;
   if (role === 'buyer')  return <Navigate to="/buyer/dashboard"  replace />;
   if (role === 'rm')     return <Navigate to="/rm/dashboard"     replace />;
   if (role === 'admin')  return <Navigate to="/admin/dashboard"  replace />;
-  return <Navigate to="/login" replace />;
+  return <Navigate to="/" replace />;
 }
 
 export default function App() {
   return (
     <Routes>
-      {/* Public */}
+      {/* ── Public pages (marketing site) ── */}
+      <Route element={<PublicLayout />}>
+        <Route path="/"             element={<Landing />} />
+        <Route path="/listings"     element={<Listings />} />
+        <Route path="/listings/:id" element={<ListingDetail />} />
+      </Route>
+
+      {/* ── Auth pages ── */}
       <Route path="/login"        element={<Login />} />
       <Route path="/signup"       element={<Signup />} />
       <Route path="/unauthorized" element={<Unauthorized />} />
 
-      {/* Root — redirect by role */}
-      <Route path="/" element={<RoleRedirect />} />
+      {/* ── Role redirect (after login) ── */}
+      <Route path="/dashboard" element={<RoleRedirect />} />
 
-      {/* All authenticated pages share the AppLayout shell */}
+      {/* ── All authenticated pages share the AppLayout shell ── */}
       <Route element={<RequireAuth />}>
         <Route element={<AppLayout />}>
 

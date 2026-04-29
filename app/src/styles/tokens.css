@@ -1,5 +1,5 @@
 :root {
-  /* Colours */
+  /* ── Colour palette (exact match to index.html prototype) ── */
   --color-copper:       #B87333;
   --color-copper-light: #FFF0E0;
   --color-ink:          #1C1C1A;
@@ -14,22 +14,27 @@
   --color-error:        #C0392B;
   --color-error-light:  #FDECEA;
 
-  /* Typography */
+  /* ── Typography ── */
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans:  'DM Sans', system-ui, sans-serif;
 
-  /* Radii */
+  /* ── Radii ── */
   --radius-card: 16px;
   --radius-btn:  8px;
-  --radius-sm:   6px;
+  --radius-icon: 50%;
 
-  /* Shadows */
-  --shadow-card: 0 1px 4px rgba(28,28,26,0.08);
-  --shadow-modal: 0 8px 32px rgba(28,28,26,0.18);
+  /* ── Spacing ── */
+  --section-py:  80px;
+  --card-px:     2rem;
+  --grid-gap:    16px;
+  --max-width:   1080px;   /* public pages */
+  --max-content: 960px;    /* dashboard content area */
 
-  /* Layout */
+  /* ── App shell ── */
   --sidebar-width: 220px;
   --topbar-height: 60px;
-  --max-content:   960px;
-  --gap:           16px;
+
+  /* ── Shadows ── */
+  --shadow-card:  0 1px 4px rgba(28,28,26,0.08);
+  --shadow-modal: 0 8px 32px rgba(28,28,26,0.18);
 }
