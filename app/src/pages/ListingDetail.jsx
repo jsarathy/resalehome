@@ -154,7 +154,7 @@ export default function ListingDetail() {
             <div className="card">
               <h3 style={{ marginBottom: '4px', color: 'var(--color-ink)' }}>Enquire about this property</h3>
               <p style={{ fontSize: '13px', marginBottom: '20px' }}>
-                {user ? 'Send a message to the seller's advisor.' : 'Sign in or register to contact the seller.'}
+                {user ? "Send a message to the seller's advisor." : 'Sign in or register to contact the seller.'}
               </p>
 
               {sent ? (
