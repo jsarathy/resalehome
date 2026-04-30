@@ -191,23 +191,33 @@ small { font-size: 12px; }
 }
 
 /* =====================================================
-   NAVIGATION (public marketing nav)
+   NAVIGATION (public marketing header — 3 rows)
    ===================================================== */
-.pub-nav {
+
+/* Sticky wrapper for all 3 header rows */
+.pub-header {
   position: sticky;
   top: 0;
   z-index: 100;
   background: var(--color-card);
-  border-bottom: 1px solid var(--color-border);
   transition: box-shadow 0.3s;
 }
-.pub-nav.scrolled { box-shadow: 0 2px 16px rgba(28,28,26,0.1); }
+.pub-header.scrolled { box-shadow: 0 4px 20px rgba(28,28,26,0.12); }
 
-.nav-inner {
+/* ── Row 1: Logo + auth ── */
+.pub-header-top {
+  border-bottom: 1px solid var(--color-border);
+}
+.header-top-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
+  height: 56px;
+}
+.header-auth {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .nav-logo {
@@ -221,19 +231,73 @@ small { font-size: 12px; }
 .nav-logo-word { font-family: var(--font-serif); font-size: 22px; font-weight: 600; }
 .nav-logo-tld  { font-family: var(--font-sans);  font-size: 13px; font-weight: 400; }
 
-.nav-links {
+/* ── Row 2: CTA strip ── */
+.pub-cta-strip {
+  background: var(--color-copper);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.cta-strip-inner {
   display: flex;
   align-items: center;
-  gap: 32px;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px 0;
 }
-.nav-links a {
+.cta-strip-text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+}
+.cta-strip-text strong {
   font-size: 14px;
-  font-weight: 500;
-  color: var(--color-ink);
-  transition: color 0.2s;
+  font-weight: 600;
 }
-.nav-links a:hover { color: var(--color-copper); }
+.cta-strip-text span {
+  font-size: 13px;
+  opacity: 0.85;
+}
+.cta-strip-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
 
+/* ── Row 3: Horizontal nav links bar ── */
+.pub-nav-links-bar {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+.pub-nav-links {
+  display: flex;          /* always horizontal */
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.pub-nav-links li {
+  display: flex;
+}
+.pub-nav-links a {
+  display: block;
+  padding: 12px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-muted);
+  white-space: nowrap;
+  transition: color 0.2s, background 0.2s;
+  border-right: 1px solid var(--color-border);
+}
+.pub-nav-links li:first-child a { border-left: 1px solid var(--color-border); }
+.pub-nav-links a:hover {
+  color: var(--color-copper);
+  background: var(--color-copper-light);
+}
+
+/* ── Hamburger (mobile only) ── */
 .nav-hamburger {
   display: none;
   flex-direction: column;
@@ -252,21 +316,27 @@ small { font-size: 12px; }
   transition: all 0.3s;
 }
 
+/* ── Mobile drawer ── */
 .nav-mobile {
   display: none;
   flex-direction: column;
   background: var(--color-card);
   border-top: 1px solid var(--color-border);
-  padding: 16px 24px 24px;
-  gap: 16px;
+  gap: 0;
 }
 .nav-mobile.open { display: flex; }
+.nav-mobile .container { display: flex; flex-direction: column; padding-bottom: 20px; }
 .nav-mobile a {
   font-size: 15px;
   font-weight: 500;
   color: var(--color-ink);
-  padding: 8px 0;
+  padding: 12px 0;
   border-bottom: 1px solid var(--color-border);
+}
+.nav-mobile .btn {
+  margin-top: 16px;
+  justify-content: center;
+  width: 100%;
 }
 
 /* =====================================================
@@ -1088,7 +1158,10 @@ tr:hover td { background: var(--color-surface); }
   h1 { font-size: 36px; }
   h2 { font-size: 26px; }
 
-  .nav-links { display: none; }
+  /* Header rows collapse to hamburger on mobile */
+  .pub-nav-links-bar  { display: none; }
+  .cta-strip-text span { display: none; }         /* hide subtitle, keep headline + buttons */
+  .cta-strip-inner    { flex-direction: column; align-items: flex-start; gap: 10px; }
   .nav-hamburger { display: flex; }
 
   .hero-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -1101,10 +1174,6 @@ tr:hover td { background: var(--color-surface); }
 
   .service-row { grid-template-columns: 1fr; gap: 12px; }
   .service-icon-wrap { display: none; }
-
-  .cta-inner   { flex-direction: column; align-items: flex-start; }
-  .cta-buttons { flex-direction: column; width: 100%; }
-  .cta-buttons .btn { width: 100%; justify-content: center; }
 
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
   .footer-col:first-child { grid-column: auto; }
