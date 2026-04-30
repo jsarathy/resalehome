@@ -179,11 +179,16 @@ small { font-size: 12px; }
 .nav-hamburger {
   display: none;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 5px;
   background: none;
   border: none;
-  padding: 4px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 .nav-hamburger span {
   display: block;
@@ -632,10 +637,10 @@ small { font-size: 12px; }
 
 .modal-close {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 32px;
-  height: 32px;
+  top: 12px;
+  right: 12px;
+  width: 44px;
+  height: 44px;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 50%;
@@ -643,10 +648,11 @@ small { font-size: 12px; }
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
   color: var(--color-muted);
   transition: background 0.2s;
   flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 .modal-close:hover { background: var(--color-border); }
 

@@ -98,7 +98,8 @@ small { font-size: 12px; }
   border: 1px solid rgba(255,255,255,0.6);
 }
 .btn-danger { background: var(--color-error); color: #fff; }
-.btn-sm     { padding: 6px 14px; font-size: 13px; }
+/* min-height: 44px satisfies WCAG 2.5.5 / Apple HIG touch target minimum */
+.btn-sm     { padding: 10px 16px; font-size: 13px; min-height: 44px; }
 .btn-full   { width: 100%; justify-content: center; }
 
 /* =====================================================
@@ -123,14 +124,17 @@ small { font-size: 12px; }
 .form-field select,
 .form-field textarea {
   width: 100%;
+  /* 16px prevents iOS Safari from auto-zooming on focus */
   padding: 10px 12px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-btn);
-  font-size: 14px;
+  font-size: 16px;
   color: var(--color-ink);
   background: #fff;
   outline: none;
   transition: border-color 0.2s;
+  /* Prevent iOS tap highlight flicker */
+  -webkit-tap-highlight-color: transparent;
 }
 .form-field input:focus,
 .form-field select:focus,
@@ -283,12 +287,18 @@ small { font-size: 12px; }
 .nav-hamburger {
   display: none;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 5px;
   background: none;
   border: none;
-  padding: 4px;
+  /* 44×44 minimum touch target (Apple HIG / WCAG 2.5.5) */
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
   cursor: pointer;
   flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 .nav-hamburger span {
   display: block;
@@ -586,12 +596,31 @@ small { font-size: 12px; }
   color: rgba(255,255,255,0.4);
   margin-bottom: 16px;
 }
-.footer-col ul { display: flex; flex-direction: column; gap: 10px; }
-.footer-col ul li a { color: rgba(255,255,255,0.7); font-size: 14px; transition: color 0.2s; }
+.footer-col ul { display: flex; flex-direction: column; gap: 4px; }
+/* min-height: 44px on footer links for touch target compliance */
+.footer-col ul li a {
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+  transition: color 0.2s;
+  display: block;
+  padding: 6px 0;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  -webkit-tap-highlight-color: transparent;
+}
 .footer-col ul li a:hover { color: #fff; }
-.footer-contact { display: flex; flex-direction: column; gap: 10px; }
-.footer-contact p { color: rgba(255,255,255,0.7); font-size: 14px; margin: 0; }
-.footer-contact a { color: rgba(255,255,255,0.7); font-size: 14px; transition: color 0.2s; }
+.footer-contact { display: flex; flex-direction: column; gap: 4px; }
+.footer-contact p { color: rgba(255,255,255,0.7); font-size: 14px; margin: 0; padding: 6px 0; }
+.footer-contact a {
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  -webkit-tap-highlight-color: transparent;
+}
 .footer-contact a:hover { color: #fff; }
 .footer-bottom { padding-top: 24px; text-align: center; color: rgba(255,255,255,0.3); font-size: 12px; }
 
@@ -630,10 +659,11 @@ small { font-size: 12px; }
 }
 .modal-close {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 32px;
-  height: 32px;
+  top: 12px;
+  right: 12px;
+  /* 44×44 minimum touch target */
+  width: 44px;
+  height: 44px;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 50%;
@@ -641,10 +671,11 @@ small { font-size: 12px; }
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 20px;
   color: var(--color-muted);
   transition: background 0.2s;
   line-height: 1;
+  -webkit-tap-highlight-color: transparent;
 }
 .modal-close:hover { background: var(--color-border); }
 .modal-heading {
