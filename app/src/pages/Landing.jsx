@@ -272,27 +272,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ── CTA BANNER ── */}
-      <section id="cta-banner" className="cta-banner-section" aria-labelledby="cta-heading">
-        <div className="container">
-          <div className="cta-inner">
-            <div className="cta-text">
-              <h2 id="cta-heading">Ready to take the first step?</h2>
-              <p>Register your property today. No obligation, no pressure.</p>
-            </div>
-            <div className="cta-buttons">
-              <button className="btn btn-white" onClick={openModal}>
-                Register my property
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
-              <a href="#contact" className="btn btn-white-outline">Contact us</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <Modal
         isOpen={modalOpen}
         onClose={() => { setModalOpen(false); setSuccess(false); }}
