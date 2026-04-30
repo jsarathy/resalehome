@@ -5,10 +5,11 @@ import AppLayout from './components/AppLayout';
 import PublicLayout from './components/PublicLayout';
 import LoadingSpinner from './components/LoadingSpinner';
 
-import Landing       from './pages/Landing';
-import Listings      from './pages/Listings';
-import ListingDetail from './pages/ListingDetail';
-import Login         from './pages/Login';
+import Landing          from './pages/Landing';
+import Listings         from './pages/Listings';
+import ListingDetail    from './pages/ListingDetail';
+import RegisterProperty from './pages/RegisterProperty';
+import Login            from './pages/Login';
 import Signup        from './pages/Signup';
 import NotFound      from './pages/NotFound';
 import Unauthorized  from './pages/Unauthorized';
@@ -58,6 +59,10 @@ export default function App() {
         <Route path="/"             element={<Landing />} />
         <Route path="/listings"     element={<Listings />} />
         <Route path="/listings/:id" element={<ListingDetail />} />
+        {/* Register-property requires auth but keeps the public header/footer */}
+        <Route element={<RequireAuth />}>
+          <Route path="/register-property" element={<RegisterProperty />} />
+        </Route>
       </Route>
 
       {/* ── Auth pages ── */}

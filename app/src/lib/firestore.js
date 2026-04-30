@@ -131,6 +131,22 @@ export async function updateValuation(id, data) {
   await updateDoc(ref('valuations', id), { ...data, updatedAt: serverTimestamp() });
 }
 
+// ── Property Listings (public registration flow) ──────────────────────────────
+
+export async function createPropertyListing(data) {
+  const docRef = await addDoc(col('propertyListings'), {
+    ...data,
+    status: 'pending',
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
+  });
+  return docRef.id;
+}
+
+export async function updatePropertyListing(id, data) {
+  await updateDoc(ref('propertyListings', id), { ...data, updatedAt: serverTimestamp() });
+}
+
 // ── Loan Applications ─────────────────────────────────────────────────────────
 
 export async function getLoanApplication(id) {
