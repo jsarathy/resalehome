@@ -2,23 +2,38 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
+    // ── Auth helpers ───────────────────────────────────────────────────────────
+
     function isSignedIn() {
       return request.auth != null;
     }
 
-    function isAdmin() {
-      return isSignedIn() && request.auth.token.role == 'admin';
+    // Role is read from the /users/{uid} document (no custom-claims required).
+    function callerRole() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
     }
 
+    function isAdmin()  { return isSignedIn() && callerRole() == 'admin'; }
+    function isRM()     { return isSignedIn() && callerRole() == 'rm'; }
+    function isSeller() { return isSignedIn() && callerRole() == 'seller'; }
+    function isBuyer()  { return isSignedIn() && callerRole() == 'buyer'; }
+
+    // ── participantUids helpers ────────────────────────────────────────────────
+
+    // Caller is listed in the stored participantUids array on an existing doc
     function isParticipant(res) {
       return isSignedIn() && request.auth.uid in res.data.participantUids;
     }
 
+    // Caller will be listed in participantUids on the document being written
     function willBeParticipant() {
       return isSignedIn() && request.auth.uid in request.resource.data.participantUids;
     }
 
-    // /users/{uid}
+    // ── /users/{uid} ──────────────────────────────────────────────────────────
+    // Each user can read and maintain their own profile.
+    // Admin can read/write any user record.
+
     match /users/{uid} {
       allow read:   if request.auth.uid == uid || isAdmin();
       allow create: if request.auth.uid == uid;
@@ -26,45 +41,74 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
-    // /properties/{propertyId}
+    // ── /properties/{propertyId} ──────────────────────────────────────────────
+    // • Unauthenticated visitors may read listed properties (public /listings page).
+    // • Participants (seller + assigned RM) can read all their own properties.
+    // • Only sellers may create; they must include themselves in participantUids
+    //   and the sellerUid field must match their uid.
+    // • Participants and Admin may update.
+    // • Only Admin may delete.
+
     match /properties/{propertyId} {
-      // Listed properties are readable by any signed-in user (buyers browsing)
-      allow read: if isAdmin()
-                  || isParticipant(resource)
-                  || (isSignedIn() && resource.data.status == 'listed');
-      allow create: if isSignedIn()
+      allow read:   if resource.data.status == 'listed'   // public browse — no auth needed
+                    || isAdmin()
+                    || isParticipant(resource);
+
+      allow create: if isSeller()
                     && request.resource.data.sellerUid == request.auth.uid
                     && willBeParticipant();
+
       allow update: if isAdmin() || isParticipant(resource);
       allow delete: if isAdmin();
     }
 
-    // /enquiries/{enquiryId}
+    // ── /enquiries/{enquiryId} ────────────────────────────────────────────────
+    // • Participants (buyer + seller + assigned RM) can read.
+    // • Only buyers may create; buyerUid must match caller and caller must be
+    //   included in participantUids.
+    // • Participants and Admin may update (e.g. RM marks status → 'in_progress').
+    // • Only Admin may delete.
+
     match /enquiries/{enquiryId} {
       allow read:   if isAdmin() || isParticipant(resource);
-      allow create: if isSignedIn()
+
+      allow create: if isBuyer()
                     && request.resource.data.buyerUid == request.auth.uid
                     && willBeParticipant();
+
       allow update: if isAdmin() || isParticipant(resource);
       allow delete: if isAdmin();
     }
 
-    // /valuations/{valuationId}
+    // ── /valuations/{valuationId} ─────────────────────────────────────────────
+    // • Participants (seller + assigned RM) can read.
+    // • Only RM or Admin may create a valuation record (seller requests via
+    //   the UI but the app backend / RM initiates the Firestore document).
+    // • Participants and Admin may update (RM uploads PDF, fills valued price).
+    // • Only Admin may delete.
+
     match /valuations/{valuationId} {
       allow read:   if isAdmin() || isParticipant(resource);
-      allow create: if isSignedIn()
-                    && request.resource.data.sellerUid == request.auth.uid
-                    && willBeParticipant();
+
+      allow create: if (isRM() || isAdmin()) && willBeParticipant();
+
       allow update: if isAdmin() || isParticipant(resource);
       allow delete: if isAdmin();
     }
 
-    // /loanApplications/{loanId}
+    // ── /loanApplications/{loanId} ────────────────────────────────────────────
+    // • Participants (buyer + assigned RM) can read.
+    // • Only buyers may create; buyerUid must match caller.
+    // • Participants and Admin may update (RM updates application status).
+    // • Only Admin may delete.
+
     match /loanApplications/{loanId} {
       allow read:   if isAdmin() || isParticipant(resource);
-      allow create: if isSignedIn()
+
+      allow create: if isBuyer()
                     && request.resource.data.buyerUid == request.auth.uid
                     && willBeParticipant();
+
       allow update: if isAdmin() || isParticipant(resource);
       allow delete: if isAdmin();
     }

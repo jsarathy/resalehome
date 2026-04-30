@@ -1,0 +1,53 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // ── Auth helpers ───────────────────────────────────────────────────────────
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function callerRole() {
+      return firestore.get(
+        /databases/(default)/documents/users/$(request.auth.uid)
+      ).data.role;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && callerRole() == 'admin';
+    }
+
+    function isRM() {
+      return isSignedIn() && callerRole() == 'rm';
+    }
+
+    // ── /valuations/** ────────────────────────────────────────────────────────
+    // Only RM and Admin may upload to this path (valuation PDF reports).
+    // Any authenticated user who has the download URL may read.
+
+    match /valuations/{allPaths=**} {
+      allow read:  if isSignedIn();
+      allow write: if isRM() || isAdmin();
+    }
+
+    // ── /users/{uid}/** ───────────────────────────────────────────────────────
+    // Users may upload to their own sub-folder only (profile photos, documents).
+
+    match /users/{uid}/{allPaths=**} {
+      allow read:  if isSignedIn();
+      allow write: if isSignedIn() && request.auth.uid == uid;
+    }
+
+    // ── /properties/{propertyId}/** ───────────────────────────────────────────
+    // Any authenticated user can upload property photos (seller adds listing photos).
+    // Any authenticated user can read (buyers viewing photos).
+
+    match /properties/{propertyId}/{allPaths=**} {
+      allow read:  if true;          // public read — photo URLs embedded in listings
+      allow write: if isSignedIn();
+    }
+
+    // Deny everything else by default (implicit deny in Firebase Storage rules).
+  }
+}

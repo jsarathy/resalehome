@@ -39,12 +39,12 @@ export default function ListingDetail() {
     setSendError('');
     try {
       await createEnquiry({
-        property_id:    id,
-        buyer_uid:      user.uid,
-        seller_uid:     property.seller_uid,
-        message:        enquiryForm.message,
-        status:         'open',
-        participantUids: [user.uid, property.seller_uid, ...(property.rm_uid ? [property.rm_uid] : [])],
+        propertyId:      id,
+        buyerUid:        user.uid,
+        sellerUid:       property.sellerUid,
+        message:         enquiryForm.message,
+        status:          'new',
+        participantUids: [user.uid, property.sellerUid, ...(property.assignedRMUid ? [property.assignedRMUid] : [])],
       });
       setSent(true);
     } catch {
