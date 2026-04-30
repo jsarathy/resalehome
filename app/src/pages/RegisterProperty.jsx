@@ -112,8 +112,12 @@ function ProgressBar({ step }) {
 
 export default function RegisterProperty() {
   const { user } = useAuth();
-  const [step, setStep]         = useState(1);
-  const [state, dispatch]       = useReducer(reducer, initialState);
+  const [step, setStep]             = useState(1);
+  // selectedType is a plain useState so it batches with setStep in one render.
+  // Deriving it from the useReducer state risks a render where step===2 but
+  // state.propertyType is still '' (stale reducer state), leaving the form blank.
+  const [selectedType, setSelectedType] = useState('');
+  const [state, dispatch]           = useReducer(reducer, initialState);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(null);
   const [listingId, setListingId]   = useState(null);
@@ -126,6 +130,12 @@ export default function RegisterProperty() {
 
   function update(field, value) {
     dispatch({ field, value });
+  }
+
+  function selectType(type) {
+    update('propertyType', type);
+    setSelectedType(type);   // same-render update as setStep below
+    setStep(2);
   }
 
   async function handleSubmit() {
@@ -192,25 +202,25 @@ export default function RegisterProperty() {
           <StepPropertyType
             data={state}
             update={update}
-            onNext={() => setStep(2)}
+            onSelect={selectType}
           />
         )}
 
-        {step === 2 && state.propertyType === 'apartment' && (
+        {step === 2 && selectedType === 'apartment' && (
           <StepApartmentDetails
             data={state}
             update={update}
             onNext={() => setStep(3)}
-            onBack={() => setStep(1)}
+            onBack={() => { setStep(1); setSelectedType(''); }}
           />
         )}
 
-        {step === 2 && state.propertyType === 'independent' && (
+        {step === 2 && selectedType === 'independent' && (
           <StepIndependentDetails
             data={state}
             update={update}
             onNext={() => setStep(3)}
-            onBack={() => setStep(1)}
+            onBack={() => { setStep(1); setSelectedType(''); }}
           />
         )}
 
