@@ -102,6 +102,16 @@ service cloud.firestore {
     // • Participants and Admin may update (RM updates application status).
     // • Only Admin may delete.
 
+    // ── /propertyListings/{listingId} ────────────────────────────────────────
+    // Public registration flow: any authenticated user may create a listing
+    // for themselves. Only the owner or Admin may read or update.
+
+    match /propertyListings/{listingId} {
+      allow create: if isSignedIn() && request.resource.data.uid == request.auth.uid;
+      allow read, update: if isAdmin() || (isSignedIn() && resource.data.uid == request.auth.uid);
+      allow delete: if isAdmin();
+    }
+
     match /loanApplications/{loanId} {
       allow read:   if isAdmin() || isParticipant(resource);
 
