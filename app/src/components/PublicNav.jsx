@@ -46,6 +46,13 @@ export default function PublicNav() {
     setSearchParams({}, { replace: true });
   }
 
+  function openRegisterFromDilemma() {
+    setDilemmaOpen(false);
+    setSearchParams({}, { replace: true });
+    setSuccess(false);
+    setModalOpen(true);
+  }
+
   const dashboardPath = userProfile?.role ? `/${userProfile.role}/dashboard` : '/login';
 
   return (
@@ -181,6 +188,11 @@ export default function PublicNav() {
             portfolio is over-leveraged — often drives the decision more than price
             or timing. We help you map all three before you commit to exit.
           </p>
+        </div>
+        <div style={{ marginTop: '24px' }}>
+          <button className="btn btn-primary" style={{ width: '100%' }} onClick={openRegisterFromDilemma}>
+            Register My Property
+          </button>
         </div>
       </Modal>
     </>
