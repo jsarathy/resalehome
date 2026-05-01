@@ -16,6 +16,10 @@ export default function Landing() {
   const [success, setSuccess]             = useState(false);
   const [successRef, setSuccessRef]       = useState('');
   const [valuationOpen, setValuationOpen] = useState(false);
+  const [servicesOpen, setServicesOpen]   = useState(false);
+
+  // Avatar trigger point — call openWhatWeDoModal() to open programmatically
+  function openWhatWeDoModal() { setServicesOpen(true); }
 
   useEffect(() => {
     if (searchParams.get('valuation') === 'open') {
@@ -78,111 +82,56 @@ export default function Landing() {
               </div>
             </div>
 
-            <div className="hero-illustration" aria-hidden="true">
-              <svg viewBox="0 0 420 380" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="420" height="380" rx="24" fill="#F7F4F0"/>
-                <rect x="60" y="60" width="220" height="260" rx="12" fill="#EDE8E0"/>
-                <rect x="90" y="100" width="160" height="180" rx="8" fill="#B87333" opacity="0.18"/>
-                <rect x="110" y="130" width="140" height="150" rx="6" fill="#FFFFFF" stroke="#B87333" strokeWidth="1.5"/>
-                <polygon points="95,130 180,60 265,130" fill="#B87333" opacity="0.75"/>
-                <rect x="158" y="218" width="44" height="62" rx="4" fill="#B87333" opacity="0.35"/>
-                <rect x="162" y="222" width="36" height="54" rx="3" fill="#B87333" opacity="0.55"/>
-                <circle cx="191" cy="252" r="3" fill="#B87333"/>
-                <rect x="122" y="152" width="40" height="36" rx="4" fill="#E6F1FB" stroke="#B87333" strokeWidth="1" opacity="0.9"/>
-                <rect x="198" y="152" width="40" height="36" rx="4" fill="#E6F1FB" stroke="#B87333" strokeWidth="1" opacity="0.9"/>
-                <line x1="142" y1="152" x2="142" y2="188" stroke="#B87333" strokeWidth="0.75" opacity="0.5"/>
-                <line x1="122" y1="170" x2="162" y2="170" stroke="#B87333" strokeWidth="0.75" opacity="0.5"/>
-                <line x1="218" y1="152" x2="218" y2="188" stroke="#B87333" strokeWidth="0.75" opacity="0.5"/>
-                <line x1="198" y1="170" x2="238" y2="170" stroke="#B87333" strokeWidth="0.75" opacity="0.5"/>
-                <rect x="240" y="180" width="120" height="140" rx="10" fill="#1D9E75" opacity="0.12"/>
-                <rect x="250" y="195" width="96" height="110" rx="6" fill="#1D9E75" opacity="0.1"/>
-                <rect x="262" y="108" width="116" height="48" rx="10" fill="#FFFFFF" stroke="#B87333" strokeWidth="1"/>
-                <text x="278" y="128" fontFamily="'DM Sans', sans-serif" fontSize="10" fill="#6B6B67">Certified valuation</text>
-                <text x="278" y="146" fontFamily="'Cormorant Garamond', serif" fontSize="14" fontWeight="600" fill="#B87333">₹ Fair market value</text>
-                <rect x="28" y="200" width="96" height="40" rx="8" fill="#E1F5EE" stroke="#1D9E75" strokeWidth="1"/>
-                <text x="44" y="215" fontFamily="'DM Sans', sans-serif" fontSize="9" fill="#1D9E75" fontWeight="500">✓ TNRERA</text>
-                <text x="44" y="230" fontFamily="'DM Sans', sans-serif" fontSize="9" fill="#6B6B67">Registered</text>
-                <rect x="80" y="280" width="200" height="6" rx="3" fill="#B87333" opacity="0.15"/>
-                <ellipse cx="180" cy="284" rx="90" ry="8" fill="#B87333" opacity="0.07"/>
-              </svg>
+            <div className="hero-right">
+              <div className="hero-illustration" aria-hidden="true">
+                <svg viewBox="0 0 420 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="420" height="380" rx="24" fill="#F7F4F0"/>
+                  <rect x="60" y="60" width="220" height="260" rx="12" fill="#EDE8E0"/>
+                  <rect x="90" y="100" width="160" height="180" rx="8" fill="#B87333" opacity="0.18"/>
+                  <rect x="110" y="130" width="140" height="150" rx="6" fill="#FFFFFF" stroke="#B87333" strokeWidth="1.5"/>
+                  <polygon points="95,130 180,60 265,130" fill="#B87333" opacity="0.75"/>
+                  <rect x="158" y="218" width="44" height="62" rx="4" fill="#B87333" opacity="0.35"/>
+                  <rect x="162" y="222" width="36" height="54" rx="3" fill="#B87333" opacity="0.55"/>
+                  <circle cx="191" cy="252" r="3" fill="#B87333"/>
+                  <rect x="122" y="152" width="40" height="36" rx="4" fill="#E6F1FB" stroke="#B87333" strokeWidth="1" opacity="0.9"/>
+                  <rect x="198" y="152" width="40" height="36" rx="4" fill="#E6F1FB" stroke="#B87333" strokeWidth="1" opacity="0.9"/>
+                  <line x1="142" y1="152" x2="142" y2="188" stroke="#B87333" strokeWidth="0.75" opacity="0.5"/>
+                  <line x1="122" y1="170" x2="162" y2="170" stroke="#B87333" strokeWidth="0.75" opacity="0.5"/>
+                  <line x1="218" y1="152" x2="218" y2="188" stroke="#B87333" strokeWidth="0.75" opacity="0.5"/>
+                  <line x1="198" y1="170" x2="238" y2="170" stroke="#B87333" strokeWidth="0.75" opacity="0.5"/>
+                  <rect x="240" y="180" width="120" height="140" rx="10" fill="#1D9E75" opacity="0.12"/>
+                  <rect x="250" y="195" width="96" height="110" rx="6" fill="#1D9E75" opacity="0.1"/>
+                  <rect x="262" y="108" width="116" height="48" rx="10" fill="#FFFFFF" stroke="#B87333" strokeWidth="1"/>
+                  <text x="278" y="128" fontFamily="'DM Sans', sans-serif" fontSize="10" fill="#6B6B67">Certified valuation</text>
+                  <text x="278" y="146" fontFamily="'Cormorant Garamond', serif" fontSize="14" fontWeight="600" fill="#B87333">₹ Fair market value</text>
+                  <rect x="28" y="200" width="96" height="40" rx="8" fill="#E1F5EE" stroke="#1D9E75" strokeWidth="1"/>
+                  <text x="44" y="215" fontFamily="'DM Sans', sans-serif" fontSize="9" fill="#1D9E75" fontWeight="500">✓ TNRERA</text>
+                  <text x="44" y="230" fontFamily="'DM Sans', sans-serif" fontSize="9" fill="#6B6B67">Registered</text>
+                  <rect x="80" y="280" width="200" height="6" rx="3" fill="#B87333" opacity="0.15"/>
+                  <ellipse cx="180" cy="284" rx="90" ry="8" fill="#B87333" opacity="0.07"/>
+                </svg>
+              </div>
+
+              <button
+                type="button"
+                className="services-trigger"
+                onClick={openWhatWeDoModal}
+                aria-haspopup="dialog"
+              >
+                <span className="services-trigger-label">What We Do for You</span>
+                <span className="services-trigger-title">Three pillars of our service</span>
+                <span className="services-trigger-hint">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M3 5l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  click to explore
+                </span>
+              </button>
             </div>
           </div>
         </div>
       </section>
 
-
-      {/* ── SERVICES ── */}
-      <section id="services" className="section-pad" aria-labelledby="services-heading">
-        <div className="container">
-          <article className="services-card">
-            <div className="services-header">
-              <span className="section-label anim-label">What We Do for You</span>
-              <h2 id="services-heading" className="anim-heading">Three pillars of our service</h2>
-            </div>
-            <div className="service-rows anim-group">
-              <div className="service-row anim-card">
-                <div className="service-icon-wrap copper" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="7" width="16" height="11" rx="1"/>
-                    <path d="M6 18V11h8v7"/><path d="M2 7l8-5 8 5"/>
-                    <line x1="10" y1="2" x2="10" y2="7"/>
-                  </svg>
-                </div>
-                <div className="service-body">
-                  <h3>Independent property valuation</h3>
-                  <p>
-                    We engage certified chartered engineers empanelled with leading
-                    banks and institutions. They appraise your property on its
-                    intrinsic attributes, current market forces, and the local
-                    demand-supply position — not just comparable sales.
-                  </p>
-                </div>
-                <span className="service-badge copper">Third-party certified</span>
-              </div>
-              <div className="service-row anim-card">
-                <div className="service-icon-wrap teal" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M4 16h12"/><path d="M10 5v11"/>
-                    <path d="M6 5 C6 5 5 8 8 8 C11 8 10 5 10 5"/>
-                    <path d="M10 5 C10 5 9 8 12 8 C15 8 14 5 14 5"/>
-                    <line x1="4" y1="5" x2="16" y2="5"/>
-                  </svg>
-                </div>
-                <div className="service-body">
-                  <h3>Legal due diligence &amp; title verification</h3>
-                  <p>
-                    Our empanelled lawyers verify the full encumbrance history,
-                    title chain, and regulatory approvals — removing every
-                    ambiguity from the transaction for both buyer and seller.
-                  </p>
-                </div>
-                <span className="service-badge teal">Empanelled lawyers</span>
-              </div>
-              <div className="service-row anim-card">
-                <div className="service-icon-wrap blue" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="2" y1="18" x2="18" y2="18"/>
-                    <line x1="2" y1="8" x2="18" y2="8"/>
-                    <path d="M10 2l8 6H2l8-6z"/>
-                    <line x1="5" y1="8" x2="5" y2="18"/>
-                    <line x1="10" y1="8" x2="10" y2="18"/>
-                    <line x1="15" y1="8" x2="15" y2="18"/>
-                  </svg>
-                </div>
-                <div className="service-body">
-                  <h3>Home loan facilitation</h3>
-                  <p>
-                    We are experts in retail home loans. Through our network of
-                    leading banks and financial institutions, we bridge the final
-                    gap between a buyer's aspiration and their purchasing power.
-                  </p>
-                </div>
-                <span className="service-badge blue">Leading bank network</span>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
 
       {/* ── TRUST ── */}
       <section id="trust" className="section-pad" aria-labelledby="trust-heading">
@@ -263,6 +212,75 @@ export default function Landing() {
             </div>
             <h3>Demand vs. supply</h3>
             <p>Micro-market inventory levels and current absorption rates</p>
+          </div>
+        </div>
+      </Modal>
+
+      <Modal
+        isOpen={servicesOpen}
+        onClose={() => setServicesOpen(false)}
+        title="What We Do for You"
+        subtitle="Three pillars of our service"
+      >
+        <div className="service-rows">
+          <div className="service-row">
+            <div className="service-icon-wrap copper" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="7" width="16" height="11" rx="1"/>
+                <path d="M6 18V11h8v7"/><path d="M2 7l8-5 8 5"/>
+                <line x1="10" y1="2" x2="10" y2="7"/>
+              </svg>
+            </div>
+            <div className="service-body">
+              <h3>Independent property valuation</h3>
+              <p>
+                We engage certified chartered engineers empanelled with leading
+                banks and institutions. They appraise your property on its
+                intrinsic attributes, current market forces, and the local
+                demand-supply position — not just comparable sales.
+              </p>
+            </div>
+            <span className="service-badge copper">Third-party certified</span>
+          </div>
+          <div className="service-row">
+            <div className="service-icon-wrap teal" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 16h12"/><path d="M10 5v11"/>
+                <path d="M6 5 C6 5 5 8 8 8 C11 8 10 5 10 5"/>
+                <path d="M10 5 C10 5 9 8 12 8 C15 8 14 5 14 5"/>
+                <line x1="4" y1="5" x2="16" y2="5"/>
+              </svg>
+            </div>
+            <div className="service-body">
+              <h3>Legal due diligence &amp; title verification</h3>
+              <p>
+                Our empanelled lawyers verify the full encumbrance history,
+                title chain, and regulatory approvals — removing every
+                ambiguity from the transaction for both buyer and seller.
+              </p>
+            </div>
+            <span className="service-badge teal">Empanelled lawyers</span>
+          </div>
+          <div className="service-row">
+            <div className="service-icon-wrap blue" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="2" y1="18" x2="18" y2="18"/>
+                <line x1="2" y1="8" x2="18" y2="8"/>
+                <path d="M10 2l8 6H2l8-6z"/>
+                <line x1="5" y1="8" x2="5" y2="18"/>
+                <line x1="10" y1="8" x2="10" y2="18"/>
+                <line x1="15" y1="8" x2="15" y2="18"/>
+              </svg>
+            </div>
+            <div className="service-body">
+              <h3>Home loan facilitation</h3>
+              <p>
+                We are experts in retail home loans. Through our network of
+                leading banks and financial institutions, we bridge the final
+                gap between a buyer's aspiration and their purchasing power.
+              </p>
+            </div>
+            <span className="service-badge blue">Leading bank network</span>
           </div>
         </div>
       </Modal>
