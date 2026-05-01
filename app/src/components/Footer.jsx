@@ -17,7 +17,7 @@ export default function Footer() {
           <div className="footer-col">
             <h4>Quick Links</h4>
             <ul>
-              <li><Link to="/#dilemma">For Sellers</Link></li>
+              <li><Link to="/?dilemma=open">For Sellers</Link></li>
               <li><Link to="/listings">Browse Properties</Link></li>
               <li><Link to="/?valuation=open">How it Works</Link></li>
               <li><Link to="/#trust">About Us</Link></li>
