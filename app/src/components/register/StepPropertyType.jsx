@@ -1,7 +1,6 @@
-export default function StepPropertyType({ data, update, onNext }) {
+export default function StepPropertyType({ data, onSelect }) {
   function select(type) {
-    update('propertyType', type);
-    onNext();
+    onSelect(type);
   }
 
   return (
