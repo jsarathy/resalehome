@@ -107,7 +107,8 @@ service cloud.firestore {
     // for themselves. Only the owner or Admin may read or update.
 
     match /propertyListings/{listingId} {
-      allow create: if isSignedIn() && request.resource.data.uid == request.auth.uid;
+      allow create: if (isSignedIn() && request.resource.data.uid == request.auth.uid)
+                    || (!isSignedIn() && request.resource.data.uid == null);
       allow read, update: if isAdmin() || (isSignedIn() && resource.data.uid == request.auth.uid);
       allow delete: if isAdmin();
     }

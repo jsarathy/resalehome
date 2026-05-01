@@ -277,6 +277,7 @@ export default function Landing() {
         onClose={() => { setModalOpen(false); setSuccess(false); }}
         title={success ? undefined : 'Register your property'}
         subtitle={success ? undefined : 'One of our advisors will contact you within 24 hours.'}
+        maxWidth={640}
       >
         {success ? (
           <div className="modal-success">
