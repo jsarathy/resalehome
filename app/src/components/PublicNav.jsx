@@ -53,7 +53,7 @@ export default function PublicNav() {
               <nav className="pub-nav-links" aria-label="Site navigation">
                 <a href="/#dilemma">For Sellers</a>
                 <Link to="/listings">Browse Properties</Link>
-                <a href="/#valuation">How it Works</a>
+                <Link to="/?valuation=open">How it Works</Link>
                 <a href="#contact">Contact</a>
               </nav>
 
@@ -112,7 +112,7 @@ export default function PublicNav() {
             <div className="container">
               <a href="/#dilemma"   onClick={() => setMobileOpen(false)}>For Sellers</a>
               <Link to="/listings"  onClick={() => setMobileOpen(false)}>Browse Properties</Link>
-              <a href="/#valuation" onClick={() => setMobileOpen(false)}>How it Works</a>
+              <Link to="/?valuation=open" onClick={() => setMobileOpen(false)}>How it Works</Link>
               <a href="#contact"    onClick={() => setMobileOpen(false)}>Contact</a>
               {user
                 ? <Link to={dashboardPath} className="btn btn-primary" onClick={() => setMobileOpen(false)}>Dashboard</Link>
