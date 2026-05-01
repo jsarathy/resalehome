@@ -406,8 +406,51 @@ small { font-size: 12px; }
   color: var(--color-teal);
   flex-shrink: 0;
 }
+.hero-right { display: flex; flex-direction: column; gap: 20px; }
 .hero-illustration { display: flex; align-items: center; justify-content: center; }
 .hero-illustration svg { width: 100%; max-width: 420px; height: auto; }
+
+.services-trigger {
+  background: #fff;
+  border: 1.5px solid var(--color-border, #e8e2da);
+  border-radius: 12px;
+  padding: 18px 22px;
+  cursor: pointer;
+  text-align: left;
+  margin-left: auto;
+  margin-right: 30%;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+.services-trigger:hover {
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.10);
+  border-color: var(--color-copper);
+  transform: translateY(-2px);
+}
+.services-trigger-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-copper);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 4px;
+}
+.services-trigger-title {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--color-ink, #1a1a18);
+  display: block;
+  margin-bottom: 8px;
+}
+.services-trigger-hint {
+  font-size: 11px;
+  color: var(--color-muted, #9e9e98);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
 
 /* =====================================================
    DILEMMA SECTION
@@ -1537,8 +1580,9 @@ tr:hover td { background: var(--color-surface); }
   .pub-cta-strip-actions .btn { flex: 1; justify-content: center; }
 
   .hero-grid { grid-template-columns: 1fr; gap: 32px; }
-  .hero-illustration { order: -1; }
+  .hero-right { order: -1; }
   .hero-illustration svg { max-width: 280px; margin: 0 auto; }
+  .services-trigger { margin-left: 0; margin-right: 0; width: 100%; }
   .hero-subheading { max-width: 100%; }
 
   .dilemma-grid { grid-template-columns: 1fr; }
