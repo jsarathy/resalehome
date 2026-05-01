@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { useAnimateOnScroll } from '../hooks/useAnimateOnScroll';
 import Modal from '../components/Modal';
@@ -8,12 +8,25 @@ import RegisterForm from '../components/RegisterForm';
 export default function Landing() {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const pageRef  = useRef(null);
   useAnimateOnScroll(pageRef);
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const [success, setSuccess]     = useState(false);
-  const [successRef, setSuccessRef] = useState('');
+  const [modalOpen, setModalOpen]         = useState(false);
+  const [success, setSuccess]             = useState(false);
+  const [successRef, setSuccessRef]       = useState('');
+  const [valuationOpen, setValuationOpen] = useState(false);
+
+  useEffect(() => {
+    if (searchParams.get('valuation') === 'open') {
+      setValuationOpen(true);
+    }
+  }, [searchParams]);
+
+  function closeValuation() {
+    setValuationOpen(false);
+    setSearchParams({}, { replace: true });
+  }
 
   const openModal = () => {
     if (user) {
@@ -57,7 +70,7 @@ export default function Landing() {
                     <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </button>
-                <a href="#valuation" className="btn btn-secondary">How it works</a>
+                <button className="btn btn-secondary" onClick={() => setValuationOpen(true)}>How it works</button>
               </div>
               <div className="hero-trust">
                 <span className="hero-trust-check" aria-hidden="true">✓</span>
@@ -125,50 +138,6 @@ export default function Landing() {
                   portfolio is over-leveraged — often drives the decision more than price
                   or timing. We help you map all three before you commit to exit.
                 </p>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      {/* ── VALUATION FACTORS ── */}
-      <section id="valuation" className="section-pad" aria-labelledby="valuation-heading">
-        <div className="container">
-          <article className="valuation-card">
-            <div className="valuation-header">
-              <span className="section-label anim-label">What Shapes Your Exit Price</span>
-              <h2 id="valuation-heading" className="anim-heading">Key factors in your appraisal</h2>
-            </div>
-            <div className="pills-grid anim-group">
-              <div className="pill anim-card">
-                <div className="pill-icon-wrap" aria-hidden="true">
-                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M3 9.5L10 3l7 6.5"/><path d="M5 8v8h10V8"/><path d="M8 16v-4h4v4"/>
-                  </svg>
-                </div>
-                <h3>Property age</h3>
-                <p>Structural life, depreciation curve, deferred maintenance load</p>
-              </div>
-              <div className="pill anim-card">
-                <div className="pill-icon-wrap" aria-hidden="true">
-                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="3,14 8,9 12,12 17,5"/><polyline points="13,5 17,5 17,9"/>
-                  </svg>
-                </div>
-                <h3>Return on investment</h3>
-                <p>Capital appreciation relative to original acquisition cost and holding period costs</p>
-              </div>
-              <div className="pill anim-card">
-                <div className="pill-icon-wrap" aria-hidden="true">
-                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="10" y1="3" x2="10" y2="17"/><line x1="5" y1="17" x2="15" y2="17"/>
-                    <line x1="3" y1="7" x2="17" y2="7"/>
-                    <path d="M3 7 C3 7 2 10 5 10 C8 10 7 7 7 7"/>
-                    <path d="M13 7 C13 7 12 10 15 10 C18 10 17 7 17 7"/>
-                  </svg>
-                </div>
-                <h3>Demand vs. supply</h3>
-                <p>Micro-market inventory levels and current absorption rates</p>
               </div>
             </div>
           </article>
@@ -289,6 +258,46 @@ export default function Landing() {
         ) : (
           <RegisterForm onSuccess={handleSuccess} />
         )}
+      </Modal>
+
+      <Modal
+        isOpen={valuationOpen}
+        onClose={closeValuation}
+        title="What Shapes Your Exit Price"
+        subtitle="Key factors in your appraisal"
+      >
+        <div className="pills-grid">
+          <div className="pill">
+            <div className="pill-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3 9.5L10 3l7 6.5"/><path d="M5 8v8h10V8"/><path d="M8 16v-4h4v4"/>
+              </svg>
+            </div>
+            <h3>Property age</h3>
+            <p>Structural life, depreciation curve, deferred maintenance load</p>
+          </div>
+          <div className="pill">
+            <div className="pill-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="3,14 8,9 12,12 17,5"/><polyline points="13,5 17,5 17,9"/>
+              </svg>
+            </div>
+            <h3>Return on investment</h3>
+            <p>Capital appreciation relative to original acquisition cost and holding period costs</p>
+          </div>
+          <div className="pill">
+            <div className="pill-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="10" y1="3" x2="10" y2="17"/><line x1="5" y1="17" x2="15" y2="17"/>
+                <line x1="3" y1="7" x2="17" y2="7"/>
+                <path d="M3 7 C3 7 2 10 5 10 C8 10 7 7 7 7"/>
+                <path d="M13 7 C13 7 12 10 15 10 C18 10 17 7 17 7"/>
+              </svg>
+            </div>
+            <h3>Demand vs. supply</h3>
+            <p>Micro-market inventory levels and current absorption rates</p>
+          </div>
+        </div>
       </Modal>
     </div>
   );

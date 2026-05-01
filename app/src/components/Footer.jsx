@@ -19,7 +19,7 @@ export default function Footer() {
             <ul>
               <li><Link to="/#dilemma">For Sellers</Link></li>
               <li><Link to="/listings">Browse Properties</Link></li>
-              <li><Link to="/#valuation">How it Works</Link></li>
+              <li><Link to="/?valuation=open">How it Works</Link></li>
               <li><Link to="/#trust">About Us</Link></li>
               <li><Link to="/#contact">Contact</Link></li>
               <li><a href="#">Privacy Policy</a></li>
