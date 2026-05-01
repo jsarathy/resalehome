@@ -110,39 +110,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ── SELLER'S DILEMMA ── */}
-      <section id="dilemma" className="section-pad" aria-labelledby="dilemma-heading">
-        <div className="container">
-          <article className="dilemma-card">
-            <div className="dilemma-header">
-              <span className="section-label anim-label">The Seller's Dilemma</span>
-              <h2 id="dilemma-heading" className="anim-heading">Three questions before you decide</h2>
-            </div>
-            <div className="anim-group">
-              <div className="dilemma-grid">
-                <div className="dilemma-item copper anim-card">
-                  <span className="dilemma-num">01</span>
-                  <h3>Right price?</h3>
-                  <p>Am I exiting at fair market value — or leaving money on the table?</p>
-                </div>
-                <div className="dilemma-item teal anim-card">
-                  <span className="dilemma-num">02</span>
-                  <h3>Right time?</h3>
-                  <p>Is the market in my favour right now, or should I wait?</p>
-                </div>
-              </div>
-              <div className="dilemma-prose anim-card">
-                <p>
-                  <strong>Over-leveraged on your portfolio?</strong>{' '}
-                  The third question — whether you can sustain holding if your
-                  portfolio is over-leveraged — often drives the decision more than price
-                  or timing. We help you map all three before you commit to exit.
-                </p>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
 
       {/* ── SERVICES ── */}
       <section id="services" className="section-pad" aria-labelledby="services-heading">

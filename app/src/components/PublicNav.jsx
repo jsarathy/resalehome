@@ -1,23 +1,31 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import Modal from './Modal';
 import RegisterForm from './RegisterForm';
 
 export default function PublicNav() {
-  const [scrolled, setScrolled]     = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [modalOpen, setModalOpen]   = useState(false);
-  const [success, setSuccess]       = useState(false);
-  const [successRef, setSuccessRef] = useState('');
-  const { user, userProfile }       = useAuth();
-  const navigate                    = useNavigate();
+  const [scrolled, setScrolled]       = useState(false);
+  const [mobileOpen, setMobileOpen]   = useState(false);
+  const [modalOpen, setModalOpen]     = useState(false);
+  const [success, setSuccess]         = useState(false);
+  const [successRef, setSuccessRef]   = useState('');
+  const [dilemmaOpen, setDilemmaOpen] = useState(false);
+  const { user, userProfile }         = useAuth();
+  const navigate                      = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  useEffect(() => {
+    if (searchParams.get('dilemma') === 'open') {
+      setDilemmaOpen(true);
+    }
+  }, [searchParams]);
 
   const openModal = () => {
     if (user) {
@@ -32,6 +40,11 @@ export default function PublicNav() {
     setSuccessRef(ref);
     setSuccess(true);
   };
+
+  function closeDilemma() {
+    setDilemmaOpen(false);
+    setSearchParams({}, { replace: true });
+  }
 
   const dashboardPath = userProfile?.role ? `/${userProfile.role}/dashboard` : '/login';
 
@@ -51,7 +64,7 @@ export default function PublicNav() {
 
               {/* Horizontal nav links — inside the same flex row as logo */}
               <nav className="pub-nav-links" aria-label="Site navigation">
-                <a href="/#dilemma">For Sellers</a>
+                <Link to="/?dilemma=open">For Sellers</Link>
                 <Link to="/listings">Browse Properties</Link>
                 <Link to="/?valuation=open">How it Works</Link>
                 <a href="#contact">Contact</a>
@@ -66,7 +79,7 @@ export default function PublicNav() {
                   <>
                     <Link to="/login" className="btn btn-secondary btn-sm">Sign in</Link>
                     <button className="btn btn-primary btn-sm" onClick={openModal}>
-                      List my property
+                      Contact Us
                     </button>
                   </>
                 )}
@@ -100,7 +113,7 @@ export default function PublicNav() {
                     <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </button>
-                <a href="#contact" className="btn btn-white-outline btn-sm">Contact us</a>
+                <button className="btn btn-white-outline btn-sm" onClick={() => setDilemmaOpen(true)}>Seller's Dilemma</button>
               </div>
             </div>
           </div>
@@ -110,13 +123,13 @@ export default function PublicNav() {
         {mobileOpen && (
           <div className="pub-mobile-drawer" aria-label="Mobile navigation">
             <div className="container">
-              <a href="/#dilemma"   onClick={() => setMobileOpen(false)}>For Sellers</a>
+              <Link to="/?dilemma=open" onClick={() => setMobileOpen(false)}>For Sellers</Link>
               <Link to="/listings"  onClick={() => setMobileOpen(false)}>Browse Properties</Link>
               <Link to="/?valuation=open" onClick={() => setMobileOpen(false)}>How it Works</Link>
               <a href="#contact"    onClick={() => setMobileOpen(false)}>Contact</a>
               {user
                 ? <Link to={dashboardPath} className="btn btn-primary" onClick={() => setMobileOpen(false)}>Dashboard</Link>
-                : <button className="btn btn-primary" onClick={() => { setMobileOpen(false); openModal(); }}>List my property</button>
+                : <button className="btn btn-primary" onClick={() => { setMobileOpen(false); openModal(); }}>Contact Us</button>
               }
             </div>
           </div>
@@ -141,6 +154,34 @@ export default function PublicNav() {
         ) : (
           <RegisterForm onSuccess={handleSuccess} />
         )}
+      </Modal>
+
+      <Modal
+        isOpen={dilemmaOpen}
+        onClose={closeDilemma}
+        title="The Seller's Dilemma"
+        subtitle="Three questions before you decide"
+      >
+        <div className="dilemma-grid">
+          <div className="dilemma-item copper">
+            <span className="dilemma-num">01</span>
+            <h3>Right price?</h3>
+            <p>Am I exiting at fair market value — or leaving money on the table?</p>
+          </div>
+          <div className="dilemma-item teal">
+            <span className="dilemma-num">02</span>
+            <h3>Right time?</h3>
+            <p>Is the market in my favour right now, or should I wait?</p>
+          </div>
+        </div>
+        <div className="dilemma-prose" style={{ marginTop: '16px' }}>
+          <p>
+            <strong>Over-leveraged on your portfolio?</strong>{' '}
+            The third question — whether you can sustain holding if your
+            portfolio is over-leveraged — often drives the decision more than price
+            or timing. We help you map all three before you commit to exit.
+          </p>
+        </div>
       </Modal>
     </>
   );
